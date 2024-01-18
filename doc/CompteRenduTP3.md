@@ -1,4 +1,3 @@
-
 # Rapport TP: Code de Hamming
 
 - UFR ST de l'université du Havre.
@@ -17,13 +16,14 @@ Le but du projet est de pouvoir développer un programme en Java|Python qui
 acceptera une trame binaire et une action (encode|décode). Suivant l'action
 choisie, le trame binaire peut alors être encoder selon la méthodologie des
 codes de Hamming avant un envois, où bien au contraire, décoder pour
-potentiellement corriger et puis extraire les données reçu.
+potentiellement corriger et puis extraire les données reçus.
 
 
 *Note:*
 
 Pour ce qui est du décodage, le programme fonctionne pour n'importe quelle
-taille de mots, et ceci sans étape intermédiaire.
+taille de mots, et ceci sans étape intermédiaire. Toutefois, la taille doit
+être reconnue comme une des tailles canoniques/standards des codes de Hamming.
 
 Toutefois, pour ce qui est du encodage, le programme va d'abord décomposer le
 mot binaire en sous-mots de 4 bits, pour ensuite encoder avec la configuration
@@ -31,8 +31,8 @@ mot binaire en sous-mots de 4 bits, pour ensuite encoder avec la configuration
 potentiellement avoir un système de cache.
 
 Aussi, cela pourra rendre ce protocole de détection d'erreur plus fiable, étant
-donnée que la probabilité de d'avoir deux erreurs sur 4 bits est bien plus
-moindre que si notre mots fait une taille supérieure. Toutefois, cela ne
+donnée que la probabilité d'avoir deux erreurs sur 4 bits est bien plus
+faible que si notre mots fait une taille supérieure. Toutefois, cela ne
 marche plus dans le cas où les erreurs surgissent en BURST (une vague d'erreur
 à un temps donnée).
 
@@ -43,16 +43,17 @@ marche plus dans le cas où les erreurs surgissent en BURST (une vague d'erreur
 *À l’envoie:*
 
 - On calcule la taille du mots à envoyer.
-- On trouve la combinaison des code de Hamming correspondante.
+- On trouve la combinaison des codes de Hamming correspondante.
 - Si la longueurs n'est pas canonique, on étend le mot binaire avec des 0 au début.
 - Une fois que la combinaison est définie, on calcule le nombre de bits de
   détection d'erreurs à avoir.
 - On calcule leurs positions.
-- On calcule leurs valeurs, tel que chaque bit de détection d'erreur Ci devra être égale
-  à la somme de certains bits a,b,c...z  du mot binaire, et que somme(Ci + a,b,c...z)==0
-  (C'est ce que Ci' vérifiera à la réception)
+- On calcule leurs valeurs, tel que chaque bit de détection d'erreur `Ci` devra être égale
+  à la somme de certains bits `a,b,c...z`  du mot binaire, et que `sum(Ci + a,b,c...z)==0`
+  (C'est ce que `Ci'` vérifiera à la réception).
 - On positionne proprement les bits de détection d'erreurs et les bits de
-  donnée, et on envois le mot. 
+  donnée.
+- On envois le mot. 
 
 *À la réception:*
 
@@ -117,7 +118,7 @@ Dans la partie `./doc`, on retrouvera le sujet du TP  ainsi que ce rapport.
 
 ### Utilisation
 
-Pour exécuter le programme, veuillez suivre les instruction suivantes:
+Pour exécuter le programme, veuillez suivre les instructions suivantes:
 
 ```bash
 
@@ -144,7 +145,8 @@ Le programme vous demandera d'insérer votre trame binaire puis l'action désir�
 
 ### Résultat des tests
 
-Les tests effectués sont basés sur les exemples du cours/TD.
+Les tests effectués sont basés sur des comparaisons avec le calculateur en
+ligne disponible sur: https://www.dcode.fr/hamming-correction-erreur .
 
 
 **Exemples de tests:**
@@ -152,6 +154,15 @@ Les tests effectués sont basés sur les exemples du cours/TD.
 
 *Encoding Test*
 ![encode-test-resutl](./encode-test-result.png)
+
+<br>
+
+
+![encode-test-resutl](./test-encodage-trame-trop-petite.png)
+
+<br>
+
+![encode-test-resutl](./test-encodage-trame-assez-longue.png)
 
 <br>
 
@@ -167,7 +178,7 @@ Les tests effectués sont basés sur les exemples du cours/TD.
 ### Conclusion
 
 Durant ce projet j'ai pu approfondir ma compréhension des code de Hamming, et
-aussi mes connaissance en Python. Par ailleurs, voilà quelques todo pour la
+aussi mes connaissances en Python. Par ailleurs, voilà quelques todo pour la
 suite: 
 
 * Simplifier le code, car durant ce projet, j'ai expérimenté/exploré Python,
