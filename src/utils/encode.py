@@ -1,7 +1,5 @@
-
 from config import ENCODING_ERROR
 from utils.constants import *
-from utils.helpers import reverse
 
 
 def encode(binary_code: str) -> None: 
@@ -22,7 +20,6 @@ def encode(binary_code: str) -> None:
 
     """
 
-    binary_code = reverse(binary_code)
     # first get the length of the passed bianry code
     binary_code_len:int = len(binary_code)
 
@@ -79,13 +76,9 @@ def encode(binary_code: str) -> None:
             print("Error on encoding. (ABORT)")
             exit(ENCODING_ERROR)
 
-        # reverse the sub list to get the natural reading of numbers
-        words_to_transmit[index].reverse()
 
         index+=1
 
 
-    # reverse the list to get the proper encoding order
-    words_to_transmit.reverse()
     print(words_to_transmit)
 
