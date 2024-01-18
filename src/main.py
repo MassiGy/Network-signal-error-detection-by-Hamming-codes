@@ -18,7 +18,6 @@ elif action not in SUPPORTED_ACTIONS:
     print("Non supported action. (ABORT)")
     exit(NON_SUPPORTED_ACTION)
 
-accumulator = ""
 if action == SUPPORTED_ACTIONS[0]:
     encode(binary_code)
 elif action == SUPPORTED_ACTIONS[1]:

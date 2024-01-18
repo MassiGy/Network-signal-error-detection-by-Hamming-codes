@@ -28,8 +28,8 @@ def encode(binary_code: str) -> None:
         binary_code_len += 1
 
     # split the binary code into sub binary words of len 4
-    sub_binary_codes = []
-    index = 0
+    sub_binary_codes:list[list]= []
+    index:int = 0
     for i in range(binary_code_len): 
 
         if i > 0 and i % HAMMING_7_4_DATA_BITS_COUNT == 0: 
@@ -47,8 +47,8 @@ def encode(binary_code: str) -> None:
         
 
     # for each sub word, fill in the err detection bits
-    words_to_transmit = []
-    index = 0
+    words_to_transmit:list[list] = []
+    index:int = 0
     for sword in sub_binary_codes: 
         # sword is a list of bits i.e ['1','0','1','0']
 
@@ -65,7 +65,7 @@ def encode(binary_code: str) -> None:
             words_to_transmit[index][ENCODING_ERROR_DETECTION_BITS_POSITIONS_7_4["C"+str(i)]-1] ^= int(sword[ENCODING_ERROR_DETECTION_BITS_CALC_7_4["C"+str(i)][2]-1])
 
 
-        j = 0
+        j:int = 0
         for i in range(HAMMING_7_4_WORD_TO_SEND_BITS_COUNT):
             # position the data bits
             if words_to_transmit[index][i] == "x": 

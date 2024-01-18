@@ -1,5 +1,5 @@
 
-def reverse(string):
+def reverse(string:str)->str:
     string = string[::-1]
     return string
 
